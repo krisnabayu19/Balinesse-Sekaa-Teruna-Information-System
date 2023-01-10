@@ -1,0 +1,87 @@
+{% extends "basesekretaris.html" %}
+{% block konten %}
+{% load static %}
+<main>
+    <!-- Main page content-->
+    <div class="container mt-5">
+        <!-- Custom page header alternative example-->
+        <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
+            <div class="mr-4 mb-3 mb-sm-0">
+                <h1 class="mb-0">Dashboard Data LPJ</h1>
+                <div class="small">
+                    <p id="date"></p>
+                </div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script>
+                    const d = new Date();
+                    let date = d.toDateString();
+                    let time = d.toLocaleTimeString();
+                    document.getElementById("date").innerHTML = date + ' ' + time;
+                </script>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-3 col-md-6 mb-4">
+                <!-- Dashboard info widget 1-->
+                <div class="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-primary h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <div class="small font-weight-bold text-primary mb-1">Jumlah LPJ Kegiatan</div>
+                                <div class="h5">{{countDataLpj}}</div>
+                            </div>
+                            <div class="ml-2"><i class="fas fa-dollar-sign fa-2x text-gray-200"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example DataTable for Dashboard Demo-->
+        <div class="card mb-4">
+            <div class="card-header">Tambah Data LPJ</div>
+             <div class="card-body">
+                 <form action="" method="POST" enctype='multipart/form-data'>
+                     {% csrf_token %} 
+                    <div class="form-group">
+                         <label class="small mb-1" for="inputNamaLpj">Nama LPJ</label>
+                         <input class="form-control py-4" id="inputNamaLpj" type="text" placeholder="Masukkan Nama LPJ" name="nama_lpj" value=""/>
+                    </div>
+                    <div class="form-group">
+                         <label class="small mb-1" for="inputDeskripsiLpj">Deskripsi LPJ</label>
+                         <input class="form-control py-4" id="inputDeskripsiLpj" type="text" placeholder="Masukkan Deskripsi LPJ" name="deskripsi_lpj" value=""/>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputTanggalLpj">Tanggal LPJ</label>
+                        <input class="form-control py-4" id="inputTanggalLpj" type="datetime-local"  name="tanggal_lpj" value=""/>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputFileLpj">File LPJ</label>
+                        <input class="form-control" type="file" name="file_path"/>
+                    </div>
+                    <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                        <button id="button" class="btn btn-primary" id="button" type="submit" value="Simpan">Simpan</button>
+                    </div>
+                    <script>
+                        $(document).ready(function () {
+                            $('button').prop('disabled', true);
+                            $('.form-control').on('change', function () {
+                                var namaLpj = $("#inputNamaLpj").val();
+                                var deskripsiLpj = $("#inputDeskripsiLpj").val();
+                                var tanggalLpj = $("#inputTanggalLpj").val();
+                                var fileLpj = $("#inputFileLpj").val();
+                                if (namaLpj != '' && deskripsiLpj != '' && tanggalLpj != '' && fileLpj != '') {
+                                    $('button').prop('disabled', false);
+                                } else {
+                                    $('button').prop('disabled', true);
+                                }
+                            });
+                        });
+                    </script>
+                 </form>
+             </div>
+        </div>
+    </div>
+</main>
+{% endblock konten %}

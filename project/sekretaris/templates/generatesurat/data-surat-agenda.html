@@ -1,0 +1,173 @@
+{% load static %}
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <style>
+            @page {
+                size: a4 portrait;
+                @frame header_frame {           /* Static Frame */
+                    -pdf-frame-content: header_content;
+                    left: 50pt;
+                    width: 512pt; 
+                    top: 30pt; 
+                    height: 200pt;
+                }
+                @frame content_frame {          /* Content Frame */
+                    left: 50pt; width: 512pt; top: 130pt; height: 632pt; padding: 2px;
+                }
+                @frame footer_frame {           /* Another static Frame */
+                    -pdf-frame-content: footer_content;
+                    left: 50pt; width: 512pt; top: 772pt; height: 20pt;
+                }
+
+            }
+            .body_content{
+                font-family: 'Times New Roman', Times, serif;
+                padding: 1.5px;
+                /* margin-left: 50px;
+                margin-right: 50px; */
+            }
+            .content_agenda{
+                height: 100%;
+            }
+            .content_agenda_satu{
+                height: 80px;
+                margin-top: 10px;
+            }
+            .content_agenda_dua{
+                height: 150px;
+                margin-top: 10px;
+            }
+            .content_surat{
+                height: 30px;
+                margin-top: 10px;
+            }
+            .content_ttd_surat{
+                height: 80px;
+            }
+            .content_surat_nama_ttd{
+                height: 30px;
+                margin-top: -10px;
+            }
+                
+        </style>
+        </head>
+
+        {% for i in dataA %}
+        <body>
+            <!-- Content for Static Frame 'header_frame' -->
+            <div class="body_content">
+                <div id="header_content">
+                <img src="media/header/header-surat.png" height="200px">
+                </div>
+            </div>
+        
+            <!-- HTML Content -->
+            <div class="body_content" >
+                <div class="content_agenda">
+                    <div class="content_agenda_satu">
+                        <table>
+                            <thead>
+                                <td>
+                                    <p style="padding-top: 0px; font-size: 10pt;">No. : 005/ST/DT/IV/{{yearLetter}}</p>
+                                    <p style="padding-top: -10px; font-size: 10pt;">Lampiran : - </p>
+                                    <p style="padding-top: -10px; font-size: 10pt;">Perihal : <b style="text-decoration: underline;">{{i.id_agenda.id_jenis_agenda.nama_jenis_agenda}}</b> </p>
+                                </td>
+                                <td>
+                                    <p style="padding-top: -20px; font-size: 10pt; text-align: left; margin-left : 110px;">Kepada</p>
+                                    <p style="padding-top: -10px; font-size: 10pt; text-align: left; margin-left : 110px;"><b>{{i.id_user.full_name}}</b></p>
+                                    <p style="padding-top: -10px; font-size: 10pt; text-align: right;"></p>
+                                </td>
+                            </thead>
+                        </table>
+                    </div >
+
+                    <div class="content_agenda_satu">
+                        <p style="padding-top: -20px; font-size: 10pt; text-align: right; margin-right: 210px;">di -</p>
+                    </div>
+
+                    <div class="content_agenda_satu">
+                        <p style="padding-top: -10px; font-size: 10pt; text-align: right; margin-right: 150px;">Tempat</p>
+                    </div>
+
+                    <div class="content_agenda_satu">
+                        <p style="padding-top: -10px; font-size: 10pt; margin-left: 30pt;"><b>Om Swastyastu</b></p>
+                    </div>
+
+                    <div class="content_agenda_satu">
+                        <p style="padding-top: -10px; font-size: 10pt; margin-left: 30pt; ">Dengan hormat,</p>
+                    </div>
+                    <div>
+                        <p style="font-size: 10pt; text-align: justify; margin-left: 30pt; margin-right: 50pt;">Berkenaan dengan akan diadakannya {{i.id_agenda.id_jenis_agenda.nama_jenis_agenda}}, maka diharapkan kepada seluruh ST. Dwi Tunggal untuk hadir pada:</p>
+                    </div>
+
+                    <div class="content_agenda_satu">  
+                    <p style="font-size: 10pt; margin-left: 60pt;">Hari/Tanggal : {{strDateMeet}}</p>
+                    <p style="padding-top: -10px; font-size: 10pt; margin-left: 60pt; ">Waktu : 19.00 WITA - Selesai</p>
+                    <p style="padding-top: -10px; font-size: 10pt; margin-left: 60pt; ">Tempat : Br. Gadon, Kerobokan Kaja, Kuta Utara, Badung, Bali</p>
+                    </div>
+
+                    <div class="content_agenda_satu">
+                        <p style="font-size: 10pt; text-align: justify; margin-left: 30pt; margin-right: 50pt;">Demikian surat pemberitahuan ini kami sampaikan, atas perhatian dan kehadirannya kami ucapkan terimakasih.</p>
+                    </div>
+
+                    <div class="content_agenda_satu" >
+                        <p style="font-size: 10pt; margin-left: 30pt;"><b>Om Shanti, Shanti, Shanti, Om</b></p>
+                    </div>
+
+                    <div class="content_agenda_satu" >
+                        <p style="font-size: 10pt; margin-left: 30pt;">NB : Seluruh Anggota <b style="text-decoration:underline;">"WAJIB"</b> Hadir</p>
+                    </div>
+
+                    <div class="content_surat" >
+                        <p style="font-size: 10pt; text-align: right; margin-right: 60pt; margin-top: 80pt;">Kerobokan, {{dateCreated}}</p>
+                    </div>
+
+                    <div class="content_surat">
+                        <table>
+                            <thead>
+                                <td>
+                                    <p style="padding-top: 0px; font-size: 10pt; margin-left: 50pt;">Ketua ST. Dwi Tunggal</p>
+                                </td>
+                                <td>
+                                    <p style="padding-top: 0px; font-size: 10pt; text-align: left; margin-left : 150px;">Sekretaris</p>
+                                </td>
+                            </thead>
+                        </table>
+                    </div >
+
+                    <div class="content_ttd_surat">
+                        <table>
+                            <thead>
+                                <td>
+                                    <p style="margin-left: 50pt;">
+                                        <img src="media/ttd/ttd3.png" height="80px">
+                                    </p>
+                                </td>
+                                <td>
+                                    <p style="margin-left : 120px;">
+                                        <img src="media/ttd/ttd.png" height="80px"></style>
+                                    </p>
+                                </td>
+                            </thead>
+                        </table>
+                    </div>
+
+                    <div class="content_surat_nama_ttd">
+                        <table>
+                            <thead>
+                                <td>
+                                    <p style="padding-top: 0px; font-size: 10pt; margin-left: 40pt;">(I Nym. Gd. Ari Indrayana)</p>
+                                </td>
+                                <td>
+                                    <p style="padding-top: 0px; font-size: 10pt; text-align: left; margin-left : 115px;">(Ni Putu Ratna Miranti)</p>
+                                </td>
+                            </thead>
+                        </table>
+                    </div >
+                </div>
+            </div>
+        
+        </body>
+        {% endfor %}
+</html>

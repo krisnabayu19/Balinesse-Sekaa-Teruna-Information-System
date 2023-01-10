@@ -1,0 +1,195 @@
+{% extends "baseanggota.html" %}
+{% block konten %}
+{% load static %} 
+<main>
+    <!-- Main page content-->
+    <div class="container mt-5">
+        <!-- Custom page header alternative example-->
+        <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
+            <div class="mr-4 mb-3 mb-sm-0">
+                <h1 class="mb-0">Dashboard Anggota</h1>
+                <div class="small">
+                    <p id="date"></p>
+                </div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script>
+                    const d = new Date();
+                    let date = d.toDateString();
+                    let time = d.toLocaleTimeString();
+                    document.getElementById("date").innerHTML = date + ' ' + time;
+                </script>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-3 col-md-6 mb-4">
+                <!-- Dashboard info widget 2-->
+                <div class="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-primary h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <div class="small font-weight-bold text-primary mb-1">Jumlah Absensi Rapat Bulanan</div>
+                                <div class="h5">Hadir : {{hadirAbsensiBul}} | Total : {{totalAbsensiBul}}</div>
+                            </div>
+                            <div class="ml-2"><i class="fas fa-clipboard-list  fa-2x text-gray-200"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <!-- Dashboard info widget 3-->
+                <div class="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-primary h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <div class="small font-weight-bold text-primary mb-1">Jumlah Absensi Rapat Pengerampungan</div>
+                                <div class="h5">Hadir : {{hadirAbsensiPeng}} | Total : {{totalAbsensiPeng}}</div>
+                            </div>
+                            <div class="ml-2"><i class="fas fa-clipboard-list  fa-2x text-gray-200"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <!-- Dashboard info widget 3-->
+                <div class="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-primary h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <div class="small font-weight-bold text-primary mb-1">Jumlah Absensi Madelokan</div>
+                                <div class="h5">Hadir : {{hadirAbsensiMed}} | Total : {{totalAbsensiMed}}</div>
+                            </div>
+                            <div class="ml-2"><i class="fas fa-clipboard-list  fa-2x text-gray-200"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-3 col-md-6 mb-4">
+                <!-- Dashboard info widget 3-->
+                <div class="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-primary h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <div class="small font-weight-bold text-primary mb-1">Jumlah Absensi HUT ST. Dwi Tunggal</div>
+                                <div class="h5">Hadir : {{hadirAbsensiHut}} | Total : {{totalAbsensiHut}}</div>
+                            </div>
+                            <div class="ml-2"><i class="fas fa-clipboard-list  fa-2x text-gray-200"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <!-- Dashboard info widget 3-->
+                <div class="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-primary h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <div class="small font-weight-bold text-primary mb-1">Jumlah Absensi Ogoh-Ogoh</div>
+                                <div class="h5">Hadir : {{hadirAbsensiOgoh}} | Total : {{totalAbsensiOgoh}}</div>
+                            </div>
+                            <div class="ml-2"><i class="fas fa-clipboard-list  fa-2x text-gray-200"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example DataTable for Dashboard Demo-->
+        <div class="card mb-4">
+            <div class="card-header">Data Detail Belum Bayar Iuran</div>
+            <div class="card-body"> 
+                <p>Total Iuran Belum Terbayarkan : {{sumIuranB}}</p>                               
+                <div class="datatable">
+                    <table class="table table-bordered table-hover" id="dataTable3" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Tanggal Agenda</th>
+                                <th>Nama Agenda</th>
+                                <th>Jumlah Iuran</th>
+                                <th>Status Iuran</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                {% for data in dataIB %}
+                                <tr>
+                                <td>{{data.id_agenda.tanggal_agenda}}</td>
+                                <td>{{data.id_agenda.nama_agenda}}</td>
+                                <td>{{data.id_agenda.id_iuran.jumlah_iuran}}</td>
+                                {% if data.status_iuran == 1 %} 
+                                <td>Belum Bayar</td>
+                                {% else %}
+                                <td>Sudah Bayar</td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %} 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-4">
+            <div class="card-header">Data Detail Sudah Bayar Iuran</div>
+            <div class="card-body">
+                <p>Total Iuran Sudah Terbayarkan : {{sumIuranS}}</p>                                  
+                <div class="datatable">
+                    <table class="table table-bordered table-hover" id="dataTable2" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Tanggal Agenda</th>
+                                <th>Nama Agenda</th>
+                                <th>Jumlah Iuran</th>
+                                <th>Status Iuran</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                {% for data in dataIS %}
+                                <tr>
+                                <td>{{data.id_agenda.tanggal_agenda}}</td>
+                                <td>{{data.id_agenda.nama_agenda}}</td>
+                                <td>{{data.id_agenda.id_iuran.jumlah_iuran}}</td>
+                                {% if data.status_iuran == 1 %} 
+                                <td>Belum Bayar</td>
+                                {% else %}
+                                <td>Sudah Bayar</td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %} 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="card mb-4">
+            <div class="card-header">Data Detail Absensi</div>
+            <div class="card-body">                                
+                <div class="datatable">
+                    <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Tanggal Agenda</th>
+                                <th>Nama Agenda</th>
+                                <th>Status Absensi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                {% for data in dataA %}
+                                <tr>
+                                <td>{{data.id_agenda.tanggal_agenda}}</td>
+                                <td>{{data.id_agenda.nama_agenda}}</td>
+                                {% if data.status_absensi == 1 %} 
+                                <td>Tidak Hadir</td>
+                                {% else %}
+                                <td>Hadir</td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %} 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="{% static 'dist/assets/demo/chart-area-demo.js' %}"></script>
+{% endblock konten %}

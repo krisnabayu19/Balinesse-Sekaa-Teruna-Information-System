@@ -1,0 +1,56 @@
+{% extends "basebendahara.html" %}
+{% block konten %}
+{% load static %}
+<main>
+    <!-- Main page content-->
+    <div class="container mt-5">
+        <!-- Custom page header alternative example-->
+        <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
+            <div class="mr-4 mb-3 mb-sm-0">
+                <h1 class="mb-0">Dashboard Master Data Iuran</h1>
+                <div class="small">
+                    <p id="date"></p>
+                </div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script>
+                    const d = new Date();
+                    let date = d.toDateString();
+                    let time = d.toLocaleTimeString();
+                    document.getElementById("date").innerHTML = date + ' ' + time;
+                </script>
+            </div>
+        </div>
+
+
+        <!-- Example DataTable for Dashboard Demo-->
+        <div class="card mb-4">
+            <div class="card-header">Tambah Data Iuran</div>
+             <div class="card-body">
+                 <form method="POST">
+                     {% csrf_token %} 
+                     <div class="form-group">
+                         <label class="small mb-1" for="inputJumlahIuran">Jumlah Iuran</label>
+                         <input class="form-control py-4" id="inputJumlahIuran" type="number" placeholder="Masukkan Jumlah Iuran" name="jumlah_iuran" value=""/>
+                     </div>
+                     <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                         <button id="button" class="btn btn-primary" type="submit" value="Simpan">Simpan</button>
+                     </div>
+                    <script>
+                        $(document).ready(function () {
+                            $('button').prop('disabled', true);
+                            $('.form-control').on('change', function () {
+                                var jumlahIuran = $("#inputJumlahIuran").val();
+                                if (jumlahIuran != '') {
+                                    $('button').prop('disabled', false);
+                                } else {
+                                    $('button').prop('disabled', true);
+                                }
+                            });
+                        });
+                    </script>
+                 </form>
+             </div>
+        </div>
+    </div>
+</main>
+{% endblock konten %}

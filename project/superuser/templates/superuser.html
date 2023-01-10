@@ -1,0 +1,132 @@
+{% extends "basesuperuser.html" %}
+{% block konten %}
+{% load static %} 
+<main>
+    <!-- Main page content-->
+    <div class="container mt-5">
+        <!-- Custom page header alternative example-->
+        <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
+            <div class="mr-4 mb-3 mb-sm-0">
+                <h1 class="mb-0">Dashboard Aktivasi Data User</h1>
+                <div class="small">
+                    <p id="date"></p>
+                </div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script>
+                    const d = new Date();
+                    let date = d.toDateString();
+                    let time = d.toLocaleTimeString();
+                    document.getElementById("date").innerHTML = date + ' ' + time;
+                </script>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-3 col-md-6 mb-4">
+                <!-- Dashboard info widget 1-->
+                <div class="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-primary h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <div class="small font-weight-bold text-primary mb-1">Total Anggota</div>
+                                <div class="h5">{{countDataA}}</div>
+                            </div>
+                            <div class="ml-2"><i class="fas fa-dollar-sign fa-2x text-gray-200"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <!-- Dashboard info widget 2-->
+                <div class="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-secondary h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <div class="small font-weight-bold text-secondary mb-1">Total Anggota Laki-Laki</div>
+                                <div class="h5">{{countDataAM}}</div>
+                            </div>
+                            <div class="ml-2"><i class="fas fa-tag fa-2x text-gray-200"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <!-- Dashboard info widget 3-->
+                <div class="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-success h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <div class="small font-weight-bold text-success mb-1">Total Anggota Perempuan</div>
+                                <div class="h5">{{countDataAF}}</div>
+                            </div>
+                            <div class="ml-2"><i class="fas fa-mouse-pointer fa-2x text-gray-200"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6 mb-4">
+                <!-- Dashboard info widget 4-->
+                <div class="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-info h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <div class="small font-weight-bold text-info mb-1">Total Pengurus</div>
+                                <div class="h5">{{countDataP}}</div>
+                            </div>
+                            <div class="ml-2"><i class="fas fa-percentage fa-2x text-gray-200"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example DataTable for Dashboard Demo-->
+        <div class="card mb-4">
+            <div class="card-header">Data Aktivasi Anggota ST. Dwi Tunggal</div>
+            <div class="card-body">                                
+                <div class="datatable">
+                    <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Username</th>
+                                <th>Status Verified</th>
+                                <th>Role</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                {% for data in dataU %}
+                                <tr>
+                                <td>{{data.username}}</td>
+                                {% if data.verified == 1 %} 
+                                <td>Sudah Verifikasi</td>
+                                {% else %} 
+                                <td>Belum Verifikasi</td>
+                                {% endif %}
+                                {% if data.is_superuser == 1 %} 
+                                <td>Superadmin</td>
+                                {% elif data.is_staff == 1 %} 
+                                <td>Anggota</td>
+                                {% elif data.is_staff == 2 %}
+                                <td>Bendahara</td>
+                                {% elif data.is_staff == 3 %}
+                                <td>Sekretaris</td>
+                                {% elif data.is_staff == 4 %}
+                                <td>Ketua / Wakil</td>
+                                {% else %}
+                                <td>Not Identify</td>
+                                {% endif %}
+                                <td>
+                                    <a class="btn btn-datatable btn-icon btn-transparent-dark mr-2" onclick="location.href='/editUser/{{data.id}}';" ><i data-feather="edit"></i></a>
+                                </td>
+                            </tr>
+                            {% endfor %} 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="{% static 'dist/assets/demo/chart-area-demo.js' %}"></script>
+{% endblock konten %}

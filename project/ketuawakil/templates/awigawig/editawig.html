@@ -1,0 +1,70 @@
+{% extends "baseketuawakil.html" %}
+{% block konten %}
+{% load static %}
+<main>
+    <!-- Main page content-->
+    <div class="container mt-5">
+        <!-- Custom page header alternative example-->
+        <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
+            <div class="mr-4 mb-3 mb-sm-0">
+                <h1 class="mb-0">Dashboard Master Data Iuran</h1>
+                <div class="small">
+                    <p id="date"></p>
+                </div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script>
+                    const d = new Date();
+                    let date = d.toDateString();
+                    let time = d.toLocaleTimeString();
+                    document.getElementById("date").innerHTML = date + ' ' + time;
+                </script>
+            </div>
+        </div>
+
+        <!-- Example DataTable for Dashboard Demo-->
+        <div class="card mb-4">
+            <div class="card-header"> Edit Data Awig - Awig</div>
+            <div class="card-body">
+                <form action="" method="POST" enctype='multipart/form-data'>
+                     {% csrf_token %} 
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputNamaAwig">Nama Awig - Awig</label>
+                        <input class="form-control py-4" type="text" name="nama_awigawig" value="{{dataA.nama_awigawig}}"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputDeskripsiAwig">Deskripsi Awig - awig</label>
+                        <input class="form-control py-4" type="text" name="deskripsi_awigawig" value="{{dataA.deskripsi_awigawig}}"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputFileAwig">File Awig - Awig</label>
+                        <input class="form-control" type="file" name="awigawig_path"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputTanggalAwig">Tanggal Awig - Awig</label>
+                        <input class="form-control py-4" type="datetime-local" name="created_at" value="{{dataA.created_at}}"/>
+                    </div>
+                    <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                        <button id="button" class="btn btn-primary" type="submit" value="Simpan">Simpan</button>
+                    </div>
+                    <script>
+                        $(document).ready(function () {
+                            $('button').prop('disabled', true);
+                            $('.form-control').on('change', function () {
+                                var namaAwig = $("#inputNamaAwig").val();
+                                var deskripsiAwig = $("#inputDeskripsiAwig").val();
+                                var tanggalAwig = $("#inputTanggalAwig").val();
+                                var fileAwig = $("#inputFileAwig").val();
+                                if (namaAwig != '' && deskripsiAwig != '' && tanggalAwig != '' && fileAwig != '' ) {
+                                    $('button').prop('disabled', false);
+                                } else {
+                                    $('button').prop('disabled', true);
+                                }
+                            });
+                        });
+                    </script>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock konten %}

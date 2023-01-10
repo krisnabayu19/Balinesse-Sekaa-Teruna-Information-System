@@ -1,0 +1,61 @@
+{% load static %} 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+    <head>
+        <style>
+            @page {
+                size: a4 portrait;
+                @frame header_frame {           /* Static Frame */
+                    -pdf-frame-content: header_content;
+                    left: 50pt; 
+                    width: 512pt; 
+                    top: 30pt; 
+                    height: 200pt;
+                }
+                @frame content_frame {          /* Content Frame */
+                    left: 50pt; width: 512pt; top: 150pt; height: 632pt; padding: 1.5px; font-family: 'Times New Roman', Times, serif;
+                }
+                @frame footer_frame {           /* Another static Frame */
+                    -pdf-frame-content: footer_content;
+                    left: 50pt; width: 512pt; top: 772pt; height: 20pt;
+                }
+
+            }
+            .body_content{
+                font-family: 'Times New Roman', Times, serif;   
+                }
+        </style>
+        </head>
+        
+        <body>
+            <!-- Content for Static Frame 'header_frame' -->
+            <div class="body_content">
+                <div id="header_content">
+                <img src="media/header/header-stdt-2.png" height="200px">
+                <hr>
+                <h1 style="text-align: center">Data Absensi Sekaa Teruna Dwi Tunggal Periode 2022 - 2025</h1>
+            </div>
+            </div>
+        
+            <!-- HTML Content -->
+            <div class="body_content">
+                <table class="table" border="0.5" style="padding: 1.5px; ">
+                <tr>
+                    <th>Nama Anggota</th>
+                    <th>Status Absensi</th>
+                </tr>
+                {% for data in dataA %}
+                <tr>
+                    <td>{{data.id_user.full_name}}</td>
+                    {% if data.status_absensi == 2%}
+                    <td>Hadir</td>
+                    {% else%}
+                    <td>Tidak Hadir</td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </table>
+            </div>
+        
+        </body>
+</html>

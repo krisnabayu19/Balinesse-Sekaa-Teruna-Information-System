@@ -1,0 +1,94 @@
+{% extends "basesekretaris.html" %}
+{% block konten %}
+{% load static %} 
+<main>
+    <!-- Main page content-->
+    <div class="container mt-5">
+        <!-- Custom page header alternative example-->
+        <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
+            <div class="mr-4 mb-3 mb-sm-0">
+                <h1 class="mb-0">Master Data Jenis Agenda</h1>
+                <div class="small">
+                    <p id="date"></p>
+                </div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script>
+                    const d = new Date();
+                    let date = d.toDateString();
+                    let time = d.toLocaleTimeString();
+                    document.getElementById("date").innerHTML = date + ' ' + time;
+                </script>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xl-3 col-md-6 mb-4">
+                <!-- Dashboard info widget 1-->
+                <div class="card border-top-0 border-bottom-0 border-right-0 border-left-lg border-primary h-100">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <div class="flex-grow-1">
+                                <div class="small font-weight-bold text-primary mb-1">Jumlah Jenis Agenda</div>
+                                <div class="h5">{{countDataJA}}</div>
+                            </div>
+                            <div class="ml-2"><i class="fas fa-dollar-sign fa-2x text-gray-200"></i></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example DataTable for Dashboard Demo-->
+        <div class="card mb-4">
+            <div class="card-header">Data Jenis Agenda ST. Dwi Tunggal</div>
+            <div class="card-header">
+                <a class="btn btn-primary" href="{% url 'tambahJenisAgenda' %}">Tambah Data </a>
+            </div>
+
+            <div class="card-body">                                
+                <div class="datatable">
+                    <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Id. Jenis Agenda</th>
+                                <th>Nama Jenis Agenda</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                {% for data in dataJA %}
+                                <tr>
+                                <td>{{data.id_jenis_agenda}}</td>
+                                <td>{{data.nama_jenis_agenda}}</td>
+                                <td>
+                                    <a class="btn btn-datatable btn-icon btn-transparent-dark mr-2" onclick="location.href='/editJenisAgenda/{{data.id_jenis_agenda}}';" ><i data-feather="edit"></i></a>
+                                    <a class="btn btn-datatable btn-icon btn-transparent-dark"  data-toggle="modal" data-target="#delete-{{data.id_jenis_agenda}}"><i data-feather="trash-2"></i></a>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="delete-{{data.id_jenis_agenda}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
+                                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                </div>
+                                                <div class="modal-body">Anda yakin menghapus data ini ?</div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-primary" type="button" data-dismiss="modal">Batal</button>
+                                                    <a class="btn btn-danger" type="button" href="/hapusJenisAgenda/{{data.id_jenis_agenda}}" onclick="">Hapus</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                                
+                            </tr>
+                            {% endfor %} 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="{% static 'dist/assets/demo/chart-area-demo.js' %}"></script>
+{% endblock konten %}

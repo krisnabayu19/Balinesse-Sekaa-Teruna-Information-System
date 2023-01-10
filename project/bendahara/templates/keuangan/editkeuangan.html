@@ -1,0 +1,93 @@
+{% extends "basebendahara.html" %}
+{% block konten %}
+{% load static %}
+<main>
+    <!-- Main page content-->
+    <div class="container mt-5">
+        <!-- Custom page header alternative example-->
+        <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
+            <div class="mr-4 mb-3 mb-sm-0">
+                <h1 class="mb-0">Dashboard Master Data Iuran</h1>
+                <div class="small">
+                    <p id="date"></p>
+                </div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script>
+                    const d = new Date();
+                    let date = d.toDateString();
+                    let time = d.toLocaleTimeString();
+                    document.getElementById("date").innerHTML = date + ' ' + time;
+                </script>
+            </div>
+        </div>
+
+        <!-- Example DataTable for Dashboard Demo-->
+        <div class="card mb-4">
+            <div class="card-header"> Edit Data Keuangan</div>
+            <div class="card-body">
+                <form action="" method="POST" enctype='multipart/form-data'>
+                     {% csrf_token %} 
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputNamaKeuangan">Nama Keuangan</label>
+                        <input class="form-control py-4" type="text" name="nama_keuangan" value="{{dataK.nama_keuangan}}"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputTipeKeuangan">Tipe Keuangan</label>
+                        <select class="form-control" id="inputTipeKeuangan" name="tipe_keuangan"  >
+                            <option value="-" {% if "-" == dataK.tipe_keuangan %} selected{% endif %} >-</option>
+                            <option value="Sisa Saldo" {% if "Sisa Saldo" == dataK.tipe_keuangan %} selected{% endif %} >Sisa Saldo</option>
+                            <option value="Pemasukan" {% if "Pemasukan" == dataK.tipe_keuangan %} selected{% endif %} >Pemasukan</option>
+                            <option value="Pengeluaran" {% if "Pengeluaran" == dataK.tipe_keuangan %} selected{% endif %} >Pengeluaran</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputJenisAgenda">Jenis Agenda</label>
+                        <select class="form-control" id="inputJenisAgenda" name="id_jenis_agenda">
+                            {% for data in dataJA %}
+                                <option value="{{data.id_jenis_agenda}}">{{data.nama_jenis_agenda}}</option>
+                            {% endfor %}  
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputJumlahKeuangan">Jumlah Keuangan</label>
+                        <input class="form-control py-4" type="number" name="jumlah_keuangan" value="{{dataK.jumlah_keuangan}}"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputDeskripsiKeuangan">Deskripsi Keuangan</label>
+                        <input class="form-control py-4" type="text" name="deskripsi_keuangan" value="{{dataK.deskripsi_keuangan}}"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputTanggalKeuangan">Tanggal Keuangan</label>
+                        <input class="form-control py-4" type="datetime-local" name="tanggal_keuangan" value="{{dataK.tanggal_keuangan}}"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputFileKeuangan">FileKeuangan</label>
+                        <input class="form-control" type="file" name="file_path"/>
+                    </div>
+                    <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                        <button id="button" class="btn btn-primary" type="submit" value="Simpan">Simpan</button>
+                    </div>
+                    <script>
+                        $(document).ready(function () {
+                            $('button').prop('disabled', true);
+                            $('.form-control').on('change', function () {
+                                var namaKeuangan = $("#inputNamaKeuangan").val();
+                                var tipeKeuangan = $("#inputTipeKeuangan").val();
+                                var jumlahKeuangan = $("#inputJumlahKeuangan").val();
+                                var deskripsiKeuangan = $("#inputDeskripsiKeuangan").val();
+                                var tanggalKeuangan = $("#inputTanggalKeuangan").val();
+                                var fileKeuangan = $("#inputFileKeuangan").val();
+                                if (namaKeuangan != '' && tipeKeuangan != '' && jumlahKeuangan != '' && deskripsiKeuangan != ''&& tanggalKeuangan != '' && fileKeuangan != '') {
+                                    $('button').prop('disabled', false);
+                                } else {
+                                    $('button').prop('disabled', true);
+                                }
+                            });
+                        });
+                    </script>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock konten %}

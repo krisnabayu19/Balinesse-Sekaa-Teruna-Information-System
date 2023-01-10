@@ -1,0 +1,61 @@
+{% extends "basebendahara.html" %}
+{% block konten %}
+{% load static %} 
+<main>
+    <!-- Main page content-->
+    <div class="container mt-5">
+        <!-- Custom page header alternative example-->
+        <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
+            <div class="mr-4 mb-3 mb-sm-0">
+                <h1 class="mb-0">Dashboard Generate Iuran Rapat</h1>
+                <div class="small">
+                    <p id="date"></p>
+                </div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script>
+                    const d = new Date();
+                    let date = d.toDateString();
+                    let time = d.toLocaleTimeString();
+                    document.getElementById("date").innerHTML = date + ' ' + time;
+                </script>
+            </div>
+        </div>
+
+        <!-- Example DataTable for Dashboard Demo-->
+        <div class="card mb-4">
+            <div class="card-header">Data Agenda ST. Dwi Tunggal</div>
+            <div class="card-body">                                
+                <div class="datatable">
+                    <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Tanggal Agenda</th>
+                                <th>Nama Agenda</th>
+                                <th>Jenis Agenda</th>
+                                <th>Deskripsi Agenda</th>
+                                <th>Iuran Agenda</th>
+                                <th>Hasil Agenda</th>
+                                <th>Generate Iuran</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                {% for data in dataAG %}
+                                <tr>
+                                <td>{{data.tanggal_agenda}}</td>
+                                <td>{{data.nama_agenda}}</td>
+                                <td>{{data.id_jenis_agenda.nama_jenis_agenda}}</td>
+                                <td>{{data.deskripsi_agenda}}</td>
+                                <td>{{data.id_iuran.jumlah_iuran}}</td>
+                                <td>{{data.hasil_agenda}}</td>
+                                <td><a class="btn btn-success text-white" onclick="location.href='/generateIuranAnggotaAgenda/{{data.id_agenda}}';" >Generate</a></td>
+                            </tr>
+                            {% endfor %} 
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<script src="{% static 'dist/assets/demo/chart-area-demo.js' %}"></script>
+{% endblock konten %}
