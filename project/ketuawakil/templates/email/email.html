@@ -1,0 +1,78 @@
+{% extends "baseketuawakil.html" %}
+{% block konten %}
+{% load static %} 
+<main>
+    <!-- Main page content-->
+    <div class="container mt-5">
+        <!-- Custom page header alternative example-->
+        <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
+            <div class="mr-4 mb-3 mb-sm-0">
+                <h1 class="mb-0">Data Email ST. Dwi Tunggal</h1>
+                <div class="small">
+                    <p id="date"></p>
+                </div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script>
+                    const d = new Date();
+                    let date = d.toDateString();
+                    let time = d.toLocaleTimeString();
+                    document.getElementById("date").innerHTML = date + ' ' + time;
+                </script>
+            </div>
+        </div>
+
+
+        <!-- Example DataTable for Dashboard Demo-->
+        <div class="card mb-4">
+            <div class="card-header">Data Email ST. Dwi Tunggal</div>
+            <div class="card-body">
+                <div class="datatable">
+                    <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Nama Pengirim Email</th>
+                                <th>Alamat Pengirim Email</th>
+                                <th>Subject Email</th>
+                                <th>Pesan Pengirim Email</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                                {% for data in dataE %}
+                                <tr>
+                                <td>{{data.name_sender_company}}</td>
+                                <td>{{data.email_address_sender_company}}</td>
+                                <td>{{data.subject_email_sender_company}}</td>
+                                <td>{{data.message_email_sender_company}}</td>
+                                <td>
+                                    <a class="btn btn-datatable btn-icon btn-transparent-dark"  data-toggle="modal" data-target="#delete-{{data.id_email_company}}"><i data-feather="trash-2"></i></a>
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="delete-{{data.id_email_company}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
+                                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                                </div>
+                                                <div class="modal-body">Anda yakin menghapus data ini ?</div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-primary" type="button" data-dismiss="modal">Batal</button>
+                                                    <a class="btn btn-danger" type="button" href="/hapusEmail/{{data.id_email_company}}" onclick="">Hapus</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %} 
+                        </tbody>
+                    </table>
+                </div>                              
+            </div>
+        </div>
+
+    </div>
+    
+</main>
+<script src="{% static 'dist/assets/demo/chart-area-demo.js' %}"></script>
+{% endblock konten %}

@@ -1,0 +1,66 @@
+{% extends "basesuperuser.html" %}
+{% block konten %}
+{% load static %}
+<main>
+    <!-- Main page content-->
+    <div class="container mt-5">
+        <!-- Custom page header alternative example-->
+        <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
+            <div class="mr-4 mb-3 mb-sm-0">
+                <h1 class="mb-0">Dashboard Pengurus ST. Dwi Tunggal</h1>
+                <div class="small">
+                    <p id="date"></p>
+                </div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script>
+                    const d = new Date();
+                    let date = d.toDateString();
+                    let time = d.toLocaleTimeString();
+                    document.getElementById("date").innerHTML = date + ' ' + time;
+                </script>
+            </div>
+        </div>
+
+
+        <!-- Example DataTable for Dashboard Demo-->
+        <div class="card mb-4">
+            <div class="card-header">Tambah Data Pengurus ST. Dwi Tunggal</div>
+            <div class="card-body">
+                <form action="" method="POST" enctype='multipart/form-data'>
+                     {% csrf_token %} 
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputPengurus">Nama Pengurus ST. Dwi Tunggal</label>
+                        <input class="form-control py-4" id="inputPengurus" type="text" placeholder="Masukkan Nama Pengurus ST. Dwi Tunggal" name="nama_pengurus_company" value=""/>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputJabatanPengurus">Deskripsi Jabatan ST. Dwi Tunggal</label>
+                        <input class="form-control py-4" id="inputJabatanPengurus" type="text" placeholder="Masukkan Jabatan Pengurus ST. Dwi Tunggal" name="jabatan_pengurus_company" value=""/>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputFilePengurus">Image Pengurus</label>
+                        <input class="form-control" type="file" name="image_pengurus_company"/>
+                    </div>
+                    <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                        <button id="button" class="btn btn-primary" type="submit" value="Simpan">Simpan</button>
+                    </div>
+                    <script>
+                        $(document).ready(function () {
+                            $('button').prop('disabled', true);
+                            $('.form-control').on('change', function () {
+                                var namaPengurus = $("#inputPengurus").val();
+                                var jabatanPengurus = $("#inputJabatanPengurus").val();
+                                var filePengurus = $("#inputFilePengurus").val();
+                                if (namaPengurus != '' && jabatanPengurus != '' && filePengurus != '') {
+                                    $('button').prop('disabled', false);
+                                } else {
+                                    $('button').prop('disabled', true);
+                                }
+                            });
+                        });
+                    </script>
+                 </form>
+             </div>
+        </div>
+    </div>
+</main>
+{% endblock konten %}

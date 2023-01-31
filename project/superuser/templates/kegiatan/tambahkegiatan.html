@@ -1,0 +1,66 @@
+{% extends "basesuperuser.html" %}
+{% block konten %}
+{% load static %}
+<main>
+    <!-- Main page content-->
+    <div class="container mt-5">
+        <!-- Custom page header alternative example-->
+        <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
+            <div class="mr-4 mb-3 mb-sm-0">
+                <h1 class="mb-0">Dashboard Keuangan</h1>
+                <div class="small">
+                    <p id="date"></p>
+                </div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script>
+                    const d = new Date();
+                    let date = d.toDateString();
+                    let time = d.toLocaleTimeString();
+                    document.getElementById("date").innerHTML = date + ' ' + time;
+                </script>
+            </div>
+        </div>
+
+
+        <!-- Example DataTable for Dashboard Demo-->
+        <div class="card mb-4">
+            <div class="card-header">Tambah Data Kegiatan ST. Dwi Tunggal</div>
+            <div class="card-body">
+                <form action="" method="POST" enctype='multipart/form-data'>
+                     {% csrf_token %} 
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputKegiatan">Kegiatan ST. Dwi Tunggal</label>
+                        <input class="form-control py-4" id="inputKegiatan" type="text" placeholder="Masukkan Kegiatan ST. Dwi Tunggal" name="title_kegiatan_company" value=""/>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputDeskripsiKegiatan">Deskripsi Kegiatan ST. Dwi Tunggal</label>
+                        <input class="form-control py-4" id="inputDeskripsiKegiatan" type="text" placeholder="Masukkan Deskripsi Kegiatan ST. Dwi Tunggal" name="deskripsi_kegiatan_company" value=""/>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputFileKegiatan">Image Kegiatan</label>
+                        <input class="form-control" type="file" name="image_kegiatan_company"/>
+                    </div>
+                    <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                        <button id="button" class="btn btn-primary" type="submit" value="Simpan">Simpan</button>
+                    </div>
+                    <script>
+                        $(document).ready(function () {
+                            $('button').prop('disabled', true);
+                            $('.form-control').on('change', function () {
+                                var namaKegiatan = $("#inputKegiatan").val();
+                                var deskripsiKegiatan = $("#inputDeskripsiKegiatan").val();
+                                var fileKegiatan = $("#inputFileKegiatan").val();
+                                if (namaKegiatan != '' && deskripsiKegiatan != '' && fileKegiatan != '') {
+                                    $('button').prop('disabled', false);
+                                } else {
+                                    $('button').prop('disabled', true);
+                                }
+                            });
+                        });
+                    </script>
+                 </form>
+             </div>
+        </div>
+    </div>
+</main>
+{% endblock konten %}

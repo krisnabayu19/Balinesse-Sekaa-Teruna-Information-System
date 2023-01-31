@@ -12,7 +12,7 @@ from bendahara.models import IuranRekapModel, KeuanganModel
 from sekretaris.models import AbsensiModel, AgendaModel, LpjModel
 from django.db.models import Sum
 
-from .models import UserProfileModel, AwigModel
+from .models import UserProfileModel, AwigModel, EmailModelCompany
 from .forms import UserProfileForm, AwigForm
 from django.contrib.auth.models import User
 
@@ -300,6 +300,27 @@ def hapusAwig(request, id):
     dataA = AwigModel.objects.get(id_awigawig=id)
     dataA.delete()
     return redirect("/dataAwig")
+
+# DATA EMAIL
+@allowed_ketuawakil(allowed_roles=dataUserKetuaWakil)
+def dataEmail(request):
+    dataE = EmailModelCompany.objects.all()
+    current_user = request.user
+    idUser = current_user.id
+    dataU = UserProfileModel.objects.get(id=idUser)
+  
+    data = {
+        'dataE' : dataE,
+        'dataU' : dataU,
+    }
+    return render(request, 'email/email.html',data)
+
+@allowed_ketuawakil(allowed_roles=dataUserKetuaWakil)
+def hapusEmail(request, id):
+    dataA = EmailModelCompany.objects.get(id_email_company=id)
+    dataA.delete()
+    return redirect("/dataEmail")
+
 
 @allowed_ketuawakil(allowed_roles=dataUserKetuaWakil)
 def export_pdf_data_lpj_kegiatan_ketua(request,id):

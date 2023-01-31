@@ -1,0 +1,328 @@
+{% load static %} 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Blog - ST. Dwi Tunggal</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'dist2/assets/img/favicon-stdt.png' %}" rel="icon">
+  <link href="{% static 'dist2/assets/img/favicon-stdt.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'dist2/assets/vendor/aos/aos.css' %}" rel="stylesheet">
+  <link href="{% static 'dist2/assets/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'dist2/assets/vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
+  <link href="{% static 'dist2/assets/vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
+  <link href="{% static 'dist2/assets/vendor/remixicon/remixicon.css' %}" rel="stylesheet">
+  <link href="{% static 'dist2/assets/vendor/swiper/swiper-bundle.min.css' %}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'dist2/assets/css/style.css' %}" rel="stylesheet">
+
+  <!-- New -->
+  <script src="{% static 'dist/assets/demo/datatables-demo.js' %}"></script>
+
+  <!-- =======================================================
+  * Template Name: FlexStart - v1.12.0
+  * Template URL: https://bootstrapmade.com/flexstart-bootstrap-startup-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+    body {
+      line-height: 1.7;
+      font-size: 1.1rem;
+      margin: 0;
+    }
+
+    main {
+      position: relative;
+      min-height: calc(100vh - 4rem);
+    }
+
+    h1 {
+      margin-top: 0;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .pagination-container {
+      width: calc(100% - 2rem);
+      display: flex;
+      align-items: center;
+      position: absolute;
+      bottom: 0;
+      padding: 1rem 0;
+      justify-content: center;
+    }
+
+    .pagination-number,
+    .pagination-button{
+      font-size: 1.1rem;
+      background-color: transparent;
+      border: none;
+      margin: 0.25rem 0.25rem;
+      cursor: pointer;
+      height: 2.5rem;
+      width: 2.5rem;
+      border-radius: .2rem;
+    }
+
+    .pagination-number:hover,
+    .pagination-button:not(.disabled):hover {
+      background: #fff;
+    }
+
+    .pagination-number.active {
+      color: #fff;
+      background: #2A66D7;
+    }
+
+
+  </style>
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="header fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+      <a href="index.html" class="logo d-flex align-items-center">
+        <img src="{% static 'dist/assets/img/favicon-stdt.png' %}" alt="">
+        <span>ST. Dwi Tunggal</span>
+      </a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto " href="{% url 'profilecompany' %}">Beranda</a></li>
+          <li><a class="active" href="{% url 'blog' %}">Blog</a></li>
+          <li><a class="getstarted scrollto" href="{% url 'signin' %}">Sign In</a></li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav><!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li>Blog</li>
+        </ol>
+        <h2>Blog</h2>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <!-- ======= Blog Section ======= -->
+    <section id="blog" class="blog">
+      <div class="container" data-aos="fade-up">
+
+        <div class="row">
+          <div class="col-lg-8 entries" >
+            <ul id="paginated-list" data-current-page="1" aria-live="polite">
+
+              {% for i in dataB%}
+              <li>
+                <article class="entry">
+
+                <div class="entry-img">
+                  <img src="{{ i.image_berita.url }}" alt="" class="img-fluid">
+                </div>
+
+                <h2 class="entry-title">
+                  <a href="blog-single.html">{{i.judul_berita}}</a>
+                </h2>
+
+                <div class="entry-meta">
+                    <div class="social">
+                        <a ><i class="bi bi-clock"></i>{{i.date_berita}}</a>
+                        <a ><i class="bi bi-chat-dots"></i>{{i.count_comment}} Comment</a>
+                    </div>
+                </div>
+
+                <div class="entry-content">
+                  <p class="class-span">
+                    {{i.deskripsi_berita}}
+                  </p>
+                  <div class="read-more">
+                    <a onclick="location.href='/blogDetail/{{i.id_berita}}';">Read More</a>
+                  </div>
+                </div>
+
+              </article><!-- End blog entry -->
+              </li>
+              {% endfor %}
+            </ul>
+
+          <nav class="blog-pagination mb-5" >
+            <ul class="justify-content-center">
+              <div id="pagination-numbers" >
+              </div>
+
+            </ul>
+          </nav>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+          <script>
+            const paginationNumbers = document.getElementById("pagination-numbers");
+            const paginatedList = document.getElementById("paginated-list");
+            const listItems = paginatedList.querySelectorAll("li");
+
+            const paginationLimit = 4;
+            const pageCount = Math.ceil(listItems.length / paginationLimit);
+            let currentPage = 1;
+
+            const appendPageNumber = (index) => {
+              const pageNumber = document.createElement("button");
+              pageNumber.className = "pagination-number";
+              pageNumber.innerHTML = index;
+              pageNumber.setAttribute("page-index", index);
+              pageNumber.setAttribute("aria-label", "Page " + index);
+
+              paginationNumbers.appendChild(pageNumber);
+            };
+
+            const getPaginationNumbers = () => {
+              for (let i = 1; i <= pageCount; i++) {
+                appendPageNumber(i);
+              }
+            };
+
+            const handleActivePageNumber = () => {
+              document.querySelectorAll(".pagination-number").forEach((button) => {
+                button.classList.remove("active");
+                const pageIndex = Number(button.getAttribute("page-index"));
+                if (pageIndex == currentPage) {
+                  button.classList.add("active");
+                }
+              });
+            };
+
+            const setCurrentPage = (pageNum) => {
+              currentPage = pageNum;
+              handleActivePageNumber();
+
+              const prevRange = (pageNum - 1) * paginationLimit;
+              const currRange = pageNum * paginationLimit;
+
+              listItems.forEach((item, index) => {
+                item.classList.add("hidden");
+                if (index >= prevRange && index < currRange) {
+                  item.classList.remove("hidden");
+                }
+              });
+            };
+
+            window.addEventListener("load", () => {
+              getPaginationNumbers();
+              setCurrentPage(1);
+
+              document.querySelectorAll(".pagination-number").forEach((button) => {
+                const pageIndex = Number(button.getAttribute("page-index"));
+
+                if (pageIndex) {
+                  button.addEventListener("click", () => {
+                    setCurrentPage(pageIndex);
+                  });
+                }
+              });
+            });
+          </script>
+          </div><!-- End blog entries list -->
+
+
+
+          <div class="col-lg-4">
+            <div class="sidebar">
+
+              <h3 class="sidebar-title">Search</h3>
+              <div class="sidebar-item search-form">
+                <form action="">
+                  <input type="text">
+                  <button type="submit"><i class="bi bi-search"></i></button>
+                </form>
+              </div><!-- End sidebar search formn-->
+
+              <h3 class="sidebar-title">Recent Posts</h3>
+              <div class="sidebar-item recent-posts">
+                {% for i in dataBSide %}
+                <div class="post-item clearfix">
+                  <img src="{{ i.image_berita.url }}" alt="">
+                  <h4><a onclick="location.href='/blogDetail/{{i.id_berita}}';">{{i.judul_berita}}</a></h4>
+                  <time datetime="2020-01-01">{{i.date_berita}}</time>
+                </div>
+                {% endfor %}
+
+              </div><!-- End sidebar recent posts-->
+
+            </div><!-- End sidebar -->
+
+          </div><!-- End blog sidebar -->
+
+        </div>
+
+      </div>
+    </section><!-- End Blog Section -->
+
+  </main><!-- End #main -->
+
+  <!-- ======= Footer ======= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="copyright">
+        &copy; <script>document.write(/\d{4}/.exec(Date())[0])</script> Copyright <strong><span>ST. Dwi Tunggal</span></strong> All Rights Reserved
+      </div>
+      <div class="credits">
+        <div class="social">
+          Follow Us 
+          <a href="https://www.facebook.com/sekaateruna.dwitunggal"><i class="bi bi-facebook"></i></a>
+          <a href="https://www.instagram.com/stdwitunggal/"><i class="bi bi-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{% static 'dist2/assets/vendor/purecounter/purecounter_vanilla.js' %}"></script>
+  <script src="{% static 'dist2/assets/vendor/aos/aos.js' %}"></script>
+  <script src="{% static 'dist2/assets/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'dist2/assets/vendor/glightbox/js/glightbox.min.js' %}"></script>
+  <script src="{% static 'dist2/assets/vendor/isotope-layout/isotope.pkgd.min.js' %}"></script>
+  <script src="{% static 'dist2/assets/vendor/swiper/swiper-bundle.min.js' %}"></script>
+  <script src="{% static 'dist2/assets/vendor/php-email-form/validate.js' %}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{% static 'dist2/assets/js/main.js' %}"></script>
+
+  <!-- New -->
+  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+  <script src="{% static 'dist/assets/demo/datatables-demo.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" crossorigin="anonymous"></script>
+
+</body>
+
+</html>

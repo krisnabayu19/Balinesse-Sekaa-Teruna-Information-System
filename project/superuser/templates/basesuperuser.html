@@ -29,12 +29,42 @@
                         <nav class="sidenav shadow-right sidenav-light">
                             <div class="sidenav-menu">
                                 <div class="nav accordion" id="accordionSidenav">
-                                    <div class="sidenav-menu-heading">Core</div>
+                                    <div class="sidenav-menu-heading">Management</div>
                                     <a class="nav-link" href="{% url 'superuser' %}" >
-                                        <div class="nav-link-icon"><i data-feather="home"></i></div>
-                                        Dashboard
+                                        <div class="nav-link-icon"><i data-feather="user"></i></div>
+                                        Data User
                                     </a>
 
+                                    <a class="nav-link collapsed" href="javascript:void(0);" data-toggle="collapse" data-target="#collapseDashboards" aria-expanded="false" aria-controls="collapseDashboards">
+                                        <div class="nav-link-icon"><i data-feather="home"></i></div>
+                                        Profile Company
+                                        <div class="sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                                    </a>
+                                    <div class="collapse" id="collapseDashboards" data-parent="#accordionSidenav">
+                                        <nav class="sidenav-menu-nested nav accordion" id="accordionSidenavPages">
+                                            <a class="nav-link" href="{% url 'editTentangCompany' %}">
+                                                Tentang
+                                            </a>
+                                            <a class="nav-link" href="{% url 'dataVisiCompany' %}">
+                                                Visi
+                                            </a>
+                                            <a class="nav-link" href="{% url 'dataKegiatanCompany' %}">
+                                                Kegiatan
+                                            </a>
+                                            <a class="nav-link" href="{% url 'dataPengurusCompany' %}">
+                                                Pengurus
+                                            </a>
+                                            <a class="nav-link" >
+                                                Dokumentasi
+                                            </a>
+                                            <a class="nav-link" href="{% url 'dataBlogCompany' %}">
+                                                Blog
+                                            </a>
+                                            <a class="nav-link" href="{% url 'editNarahubungCompany' %}">
+                                                Narahubung
+                                            </a>
+                                        </nav>
+                                    </div>
                                     <div class="sidenav-menu-heading">Account</div>
                                     <a class="nav-link" href="/signout">
                                         <div class="nav-link-icon"><i data-feather="log-out"></i></div>
@@ -50,7 +80,6 @@
                             </div>
                         </nav>
                </div> 
-
 
                <div id="layoutSidenav_content">
                 {% block konten %}
@@ -75,8 +104,7 @@
            <script src="{% static 'dist/assets/demo/datatables-demo.js' %}"></script>
            <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js" crossorigin="anonymous"></script>
            <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js" crossorigin="anonymous"></script>
-           <script src="{% static 'dist/assets/demo/date-range-picker-demo.js' %}"></script>
-           
+           <script src="{% static 'dist/assets/demo/date-range-picker-demo.js' %}"></script>  
        </body>
    </html>
     {% else %}

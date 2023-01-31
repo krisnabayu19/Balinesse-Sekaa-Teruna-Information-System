@@ -17,6 +17,8 @@ urlpatterns = [
     path('signout/',views.signout, name='signout'),
     path('signup/',views.signup, name='signup'),
     path('profile/',views.profile, name='profile'),
+    path('blog/',sviews.blog, name='blog'),
+    path('blogDetail/<int:id>',sviews.blogDetail),
 
     # Access Denied
     path('accessdenied/', views.accessdenied, name='accessdenied'),
@@ -24,6 +26,26 @@ urlpatterns = [
     # Superuser
     path('superuser/', sviews.dataUser, name='superuser'),
     path('editUser/<int:id>',sviews.editUser),
+    path('editTentangCompany/',sviews.editTentangCompany, name='editTentangCompany'),
+    path('dataVisiCompany/',sviews.dataVisiCompany, name='dataVisiCompany'),
+    path('tambahVisiCompany/',sviews.tambahVisiCompany, name='tambahVisiCompany'),
+    path('hapusVisiCompany/<int:id>',sviews.hapusVisiCompany),
+    path('editVisiCompany/<int:id>',sviews.editVisiCompany),
+    path('dataKegiatanCompany/',sviews.dataKegiatanCompany, name='dataKegiatanCompany'),
+    path('tambahKegiatanCompany/',sviews.tambahKegiatanCompany, name='tambahKegiatanCompany'),
+    path('editKegiatanCompany/<int:id>',sviews.editKegiatanCompany),
+    path('hapusKegiatanCompany/<int:id>',sviews.hapusKegiatanCompany),
+    path('dataPengurusCompany/',sviews.dataPengurusCompany, name='dataPengurusCompany'),
+    path('tambahPengurusCompany/',sviews.tambahPengurusCompany, name='tambahPengurusCompany'),
+    path('editPengurusCompany/<int:id>',sviews.editPengurusCompany),
+    path('hapusPengurusCompany/<int:id>',sviews.hapusPengurusCompany),
+    path('editNarahubungCompany/',sviews.narahubungCompany, name='editNarahubungCompany'),
+    path('tambahBlogCompany/',sviews.tambahBlogCompany, name='tambahBlogCompany'),
+    path('dataBlogCompany/',sviews.dataBlogCompany, name='dataBlogCompany'),
+    path('editBlogCompany/<int:id>',sviews.editBlogCompany),
+    path('hapusBlogCompany/<int:id>',sviews.hapusBlogCompany),
+    path('hapusCommentCompany/<int:id>',sviews.hapusBlogCommentCompany),
+
 
     # Executive
     # path('executive/', views.homeexecutive, name='homeexecutive'),
@@ -108,6 +130,8 @@ urlpatterns = [
     path('editAwig/<int:id>',skwviews.editAwig),
     path('hapusAwig/<int:id>',skwviews.hapusAwig),
     path('export-pdf-data-awigawig-ketua/<int:id>',skwviews.export_pdf_data_awigawig_ketua),
+    path('dataEmail/', skwviews.dataEmail, name='dataEmail'),
+    path('hapusEmail/<int:id>',skwviews.hapusEmail),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

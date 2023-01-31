@@ -46,6 +46,7 @@
 
       <a href="index.html" class="logo d-flex align-items-center">
         <img src="{% static 'dist/assets/img/favicon-stdt.png' %}" alt="">
+        <span>ST. Dwi Tunggal</span>
       </a>
 
       <nav id="navbar" class="navbar">
@@ -56,6 +57,7 @@
           <li><a class="nav-link scrollto" href="#portfolio">Dokumentasi</a></li>
           <li><a class="nav-link scrollto" href="#team">Pengurus</a></li>
           <li><a class="nav-link scrollto" href="#recent-blog-posts">Berita</a></li>
+          <li><a class="nav-link scrollto" href="#location">Lokasi</a></li>
           <li><a class="nav-link scrollto" href="#contact">Kontak</a></li>
           <li><a class="getstarted scrollto" href="{% url 'signin' %}">Sign In</a></li>
         </ul>
@@ -95,25 +97,27 @@
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
 
+      {% for i in dataT %}
+
       <div class="container" data-aos="fade-up">
         <div class="row gx-0">
-
           <div class="col-lg-6 d-flex flex-column justify-content-center" data-aos="fade-up" data-aos-delay="200">
             <div class="content">
               <h3>Tentang</h3>
               <h2>Sekaa Teruna Dwi Tunggal</h2>
               <p>
-                Quisquam vel ut sint cum eos hic dolores aperiam. Sed deserunt et. Inventore et et dolor consequatur itaque ut voluptate sed et. Magnam nam ipsum tenetur suscipit voluptatum nam et est corrupti.
+                {{i.deskripsi_tentang_company}}
               </p>
             </div>
           </div>
 
           <div class="col-lg-6 d-flex align-items-center" data-aos="zoom-out" data-aos-delay="200">
-            <img src="{% static 'dist2/assets/img/about.jpg' %}" class="img-fluid" alt="">
+            <img  src="{{ i.image_tentang_company.url }}" class="img-fluid" alt="">
           </div>
-
+  
         </div>
       </div>
+      {% endfor %}
 
     </section><!-- End About Section -->
 
@@ -123,36 +127,21 @@
       <div class="container" data-aos="fade-up">
 
         <header class="section-header">
-          <h2>Sekeaa Teruna Dwi Tunggal</h2>
+          <h2>Sekaa Teruna Dwi Tunggal</h2>
           <p>Visi Organisasi</p>
         </header>
 
         <div class="row">
 
+          {% for i in dataV %}
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
             <div class="box">
-              <img src="{% static 'dist2/assets/img/values-1.png' %}" class="img-fluid" alt="">
-              <h3>Ad cupiditate sed est odio</h3>
-              <p>Eum ad dolor et. Autem aut fugiat debitis voluptatem consequuntur sit. Et veritatis id.</p>
+              <img src="{{ i.image_visi_company.url }}" class="img-fluid" alt="">
+              <h3>{{i.title_visi_company}}</h3>
+              <p>{{i.deskripsi_visi_company}}</p>
             </div>
           </div>
-
-          <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="400">
-            <div class="box">
-              <img src="{% static 'dist2/assets/img/values-2.png' %}" class="img-fluid" alt="">
-              <h3>Voluptatem voluptatum alias</h3>
-              <p>Repudiandae amet nihil natus in distinctio suscipit id. Doloremque ducimus ea sit non.</p>
-            </div>
-          </div>
-
-          <div class="col-lg-4 mt-4 mt-lg-0" data-aos="fade-up" data-aos-delay="600">
-            <div class="box">
-              <img src="{% static 'dist2/assets/img/values-3.png' %}" class="img-fluid" alt="">
-              <h3>Fugit cupiditate alias nobis.</h3>
-              <p>Quam rem vitae est autem molestias explicabo debitis sint. Vero aliquid quidem commodi.</p>
-            </div>
-          </div>
-
+          {% endfor %}
         </div>
 
       </div>
@@ -171,59 +160,18 @@
 
         <div class="row gy-4">
 
+          {% for i in dataK %}
+
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="service-box blue">
-              <i class="ri-discuss-line icon"></i>
-              <h3>Nesciunt Mete</h3>
-              <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.</p>
+              <img src="{{ i.image_kegiatan_company.url }}" class="img-fluid" alt="">
+              <p></p>
+              <h3>{{i.title_kegiatan_company}}</h3>
+              <p>{{i.deskripsi_kegiatan_company}}</p>
               <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
             </div>
           </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="service-box orange">
-              <i class="ri-discuss-line icon"></i>
-              <h3>Eosle Commodi</h3>
-              <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</p>
-              <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-            <div class="service-box green">
-              <i class="ri-discuss-line icon"></i>
-              <h3>Ledo Markt</h3>
-              <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
-              <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-            <div class="service-box red">
-              <i class="ri-discuss-line icon"></i>
-              <h3>Asperiores Commodi</h3>
-              <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident adipisci neque.</p>
-              <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
-            <div class="service-box purple">
-              <i class="ri-discuss-line icon"></i>
-              <h3>Velit Doloremque.</h3>
-              <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi at autem alias eius labore.</p>
-              <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="700">
-            <div class="service-box pink">
-              <i class="ri-discuss-line icon"></i>
-              <h3>Dolori Architecto</h3>
-              <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
-              <a href="#" class="read-more"><span>Read More</span> <i class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
+          {% endfor %}
 
         </div>
 
@@ -240,17 +188,6 @@
           <h2>Sekaa Teruna Dwi Tunggal</h2>
           <p>Dokumentasi Kegiatan</p>
         </header>
-
-        <div class="row" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-card">Card</li>
-              <li data-filter=".filter-web">Web</li>
-            </ul>
-          </div>
-        </div>
 
         <div class="row gy-4 portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
@@ -338,48 +275,6 @@
             </div>
           </div>
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="{% static 'dist2/assets/img/portfolio/portfolio-7.jpg' %}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Card 1</h4>
-                <p>Card</p>
-                <div class="portfolio-links">
-                  <a href="{% static 'dist2/assets/img/portfolio/portfolio-7.jpg' %}" data-gallery="portfolioGallery" class="portfokio-lightbox" title="Card 1"><i class="bi bi-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-card">
-            <div class="portfolio-wrap">
-              <img src="{% static 'dist2/assets/img/portfolio/portfolio-8.jpg' %}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Card 3</h4>
-                <p>Card</p>
-                <div class="portfolio-links">
-                  <a href="{% static 'dist2/assets/img/portfolio/portfolio-8.jpg' %}" data-gallery="portfolioGallery" class="portfokio-lightbox" title="Card 3"><i class="bi bi-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-web">
-            <div class="portfolio-wrap">
-              <img src="{% static 'dist2/assets/img/portfolio/portfolio-9.jpg' %}" class="img-fluid" alt="">
-              <div class="portfolio-info">
-                <h4>Web 3</h4>
-                <p>Web</p>
-                <div class="portfolio-links">
-                  <a href="{% static 'dist2/assets/img/portfolio/portfolio-9.jpg' %}" data-gallery="portfolioGallery" class="portfokio-lightbox" title="Web 3"><i class="bi bi-plus"></i></a>
-                  <a href="portfolio-details.html" title="More Details"><i class="bi bi-link"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-
         </div>
 
       </div>
@@ -398,82 +293,28 @@
 
         <div class="row gy-4">
 
+          {% for i in dataP%}
+
           <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
             <div class="member">
               <div class="member-img">
-                <img src="{% static 'dist2/assets/img/team/team-1.jpg' %}" class="img-fluid" alt="">
-                <div class="social">
+                <img src="{{ i.image_pengurus_company.url }}" class="img-fluid" alt="">
+                <!-- <div class="social">
                   <a href=""><i class="bi bi-twitter"></i></a>
                   <a href=""><i class="bi bi-facebook"></i></a>
                   <a href=""><i class="bi bi-instagram"></i></a>
                   <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
+                </div> -->
               </div>
               <div class="member-info">
-                <h4>Walter White</h4>
-                <span>Chief Executive Officer</span>
-                <p>Velit aut quia fugit et et. Dolorum ea voluptate vel tempore tenetur ipsa quae aut. Ipsum exercitationem iure minima enim corporis et voluptate.</p>
+                <h4>{{i.nama_pengurus_company}}</h4>
+                <span>{{i.jabatan_pengurus_company}}</span>
+                <p><b>Periode {{i.periode_mulai_company}} - {{i.periode_berakhir_company}}</b></p>
               </div>
             </div>
           </div>
 
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-            <div class="member">
-              <div class="member-img">
-                <img src="{% static 'dist2/assets/img/team/team-2.jpg' %}" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Sarah Jhonson</h4>
-                <span>Product Manager</span>
-                <p>Quo esse repellendus quia id. Est eum et accusantium pariatur fugit nihil minima suscipit corporis. Voluptate sed quas reiciendis animi neque sapiente.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
-            <div class="member">
-              <div class="member-img">
-                <img src="{% static 'dist2/assets/img/team/team-3.jpg' %}" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>William Anderson</h4>
-                <span>CTO</span>
-                <p>Vero omnis enim consequatur. Voluptas consectetur unde qui molestiae deserunt. Voluptates enim aut architecto porro aspernatur molestiae modi.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-3 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="400">
-            <div class="member">
-              <div class="member-img">
-                <img src="{% static 'dist2/assets/img/team/team-4.jpg' %}" class="img-fluid" alt="">
-                <div class="social">
-                  <a href=""><i class="bi bi-twitter"></i></a>
-                  <a href=""><i class="bi bi-facebook"></i></a>
-                  <a href=""><i class="bi bi-instagram"></i></a>
-                  <a href=""><i class="bi bi-linkedin"></i></a>
-                </div>
-              </div>
-              <div class="member-info">
-                <h4>Amanda Jepson</h4>
-                <span>Accountant</span>
-                <p>Rerum voluptate non adipisci animi distinctio et deserunt amet voluptas. Quia aut aliquid doloremque ut possimus ipsum officia.</p>
-              </div>
-            </div>
-          </div>
-
+          {% endfor %}
         </div>
 
       </div>
@@ -482,7 +323,6 @@
 
     <!-- ======= Recent Blog Posts Section ======= -->
     <section id="recent-blog-posts" class="recent-blog-posts">
-
       <div class="container" data-aos="fade-up">
 
         <header class="section-header">
@@ -491,39 +331,60 @@
         </header>
 
         <div class="row">
-
+          {% for i in dataB %}
           <div class="col-lg-4">
             <div class="post-box">
-              <div class="post-img"><img src="{% static 'dist2/assets/img/blog/blog-1.jpg' %}" class="img-fluid" alt=""></div>
-              <span class="post-date">Tue, September 15</span>
-              <h3 class="post-title">Eum ad dolor et. Autem aut fugiat debitis voluptatem consequuntur sit</h3>
-              <a href="blog-single.html" class="readmore stretched-link mt-auto"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
+              <div class="post-img"><img src="{{ i.image_berita.url }}" class="img-fluid" alt=""></div>
+              <span class="post-date">{{i.date_berita}}</span>
+              <h3 class="post-title">{{i.judul_berita}}</h3>
+              <span style="display:inline-block;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              max-width: 200ch;">
+                {{i.deskripsi_berita}}
+              </span>
+              <span class="class-span">{{i.deskripsi_berita}}</span>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+              <script>
+                 $(document).ready(function ()
+                    { $(".class-span").each(function(i){
+                          var len=$(this).text().trim().length;
+                          if(len>100)
+                          {
+                              $(this).text($(this).text().substr(0,100)+'...');
+                          }
+                      });
+                  });
+              </script>
+              <a onclick="location.href='/blogDetail/{{i.id_berita}}';" class="readmore stretched-link mt-auto"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
             </div>
           </div>
 
-          <div class="col-lg-4">
-            <div class="post-box">
-              <div class="post-img"><img src="{% static 'dist2/assets/img/blog/blog-2.jpg' %}" class="img-fluid" alt=""></div>
-              <span class="post-date">Fri, August 28</span>
-              <h3 class="post-title">Et repellendus molestiae qui est sed omnis voluptates magnam</h3>
-              <a href="blog-single.html" class="readmore stretched-link mt-auto"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
-
-          <div class="col-lg-4">
-            <div class="post-box">
-              <div class="post-img"><img src="{% static 'dist2/assets/img/blog/blog-3.jpg' %}" class="img-fluid" alt=""></div>
-              <span class="post-date">Mon, July 11</span>
-              <h3 class="post-title">Quia assumenda est et veritatis aut quae</h3>
-              <a href="blog-single.html" class="readmore stretched-link mt-auto"><span>Read More</span><i class="bi bi-arrow-right"></i></a>
-            </div>
-          </div>
-
-        </div>
-
+          {% endfor %}
+      </div> 
+      <div class="d-flex justify-content-center" style="margin-top: 30px;">
+        <a  href="{% url 'blog' %}">
+          <button type="button" class="btn position-relative text-white" style="background: #2A66D7;">
+            Lihat Berita Lainnya 
+          </button>
+        </a>
       </div>
-
     </section><!-- End Recent Blog Posts Section -->
+
+    <!-- ======= Location Section ======= -->
+    <section id="location" class="location">
+      <div class="container" data-aos="fade-up">
+        <header class="section-header">
+          <h2>Sekaa Teruna Dwi Tunggal</h2>
+          <p>Lokasi</p>
+        </header>
+        
+        <div>
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63111.66958572327!2d115.12886925351641!3d-8.645876452543506!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd238a35230fc77%3A0x94f49487a2b626a!2sBalai%20Banjar%20Gadon!5e0!3m2!1sen!2sid!4v1674994612366!5m2!1sen!2sid" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+      </div>
+    </section>
 
     <!-- ======= Contact Section ======= -->
     <section id="contact" class="contact">
@@ -538,66 +399,64 @@
         <div class="row gy-4">
 
           <div class="col-lg-6">
-
+            
             <div class="row gy-4">
               <div class="col-md-6">
                 <div class="info-box">
                   <i class="bi bi-geo-alt"></i>
                   <h3>Address</h3>
-                  <p>A108 Adam Street,<br>New York, NY 535022</p>
+                  <p>{{dataN.address_narahubung}}</p>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="info-box">
                   <i class="bi bi-telephone"></i>
                   <h3>Call Us</h3>
-                  <p>+1 5589 55488 55<br>+1 6678 254445 41</p>
+                  <p>+62 {{dataN.phonenumber_narahubung}}</p>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="info-box">
                   <i class="bi bi-envelope"></i>
                   <h3>Email Us</h3>
-                  <p>info@example.com<br>contact@example.com</p>
+                  <p>{{dataN.email_narahubung}}</p>
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="info-box">
                   <i class="bi bi-clock"></i>
                   <h3>Open Hours</h3>
-                  <p>Monday - Friday<br>9:00AM - 05:00PM</p>
+                  <p>{{dataN.clock_narahubung}}</p>
                 </div>
               </div>
             </div>
-
           </div>
 
           <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" class="php-email-form">
+            <form action="" method="POST" >
+              {% csrf_token %} 
               <div class="row gy-4">
 
                 <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                  <input type="text" name="name_sender_company" class="form-control" placeholder="Your Name" value="">
                 </div>
 
                 <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email" required>
+                  <input type="email" class="form-control" name="email_address_sender_company" placeholder="Your Email" value="">
                 </div>
 
                 <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required>
+                  <input type="text" class="form-control" name="subject_email_sender_company" placeholder="Subject" value="">
                 </div>
 
                 <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required></textarea>
+                  <textarea class="form-control" name="message_email_sender_company" rows="6" placeholder="Message" value=""></textarea>
                 </div>
 
                 <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                  <button type="submit">Send Message</button>
+                  <button type="submit" class="btn position-relative text-white" style="background: #2A66D7;" value="Simpan">
+                    Send Message
+                  </button>
                 </div>
 
               </div>
@@ -618,14 +477,16 @@
 
     <div class="container">
       <div class="copyright">
-        &copy; Copyright <strong><span>ST. Dwi Tunggal</span></strong>. All Rights Reserved
+        &copy; <script>document.write(/\d{4}/.exec(Date())[0])</script> Copyright <strong><span>ST. Dwi Tunggal</span></strong> All Rights Reserved
       </div>
       <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/flexstart-bootstrap-startup-template/ -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+        <div class="entry-meta">
+          <div class="social">
+            Follow Us 
+            <a href="https://www.facebook.com/sekaateruna.dwitunggal"><i class="bi bi-facebook"></i></a>
+            <a href="https://www.instagram.com/stdwitunggal/"><i class="bi bi-instagram"></i></a>
+          </div>
+      </div>
       </div>
     </div>
   </footer><!-- End Footer -->

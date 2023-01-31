@@ -1,0 +1,118 @@
+{% extends "basesuperuser.html" %}
+{% block konten %}
+{% load static %}
+<main>
+    <!-- Main page content-->
+    <div class="container mt-5">
+        <!-- Custom page header alternative example-->
+        <div class="d-flex justify-content-between align-items-sm-center flex-column flex-sm-row mb-4">
+            <div class="mr-4 mb-3 mb-sm-0">
+                <h1 class="mb-0">Dashboard Edit Blog Berita ST. Dwi Tunggal</h1>
+                <div class="small">
+                    <p id="date"></p>
+                </div>
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+                <script>
+                    const d = new Date();
+                    let date = d.toDateString();
+                    let time = d.toLocaleTimeString();
+                    document.getElementById("date").innerHTML = date + ' ' + time;
+                </script>
+            </div>
+        </div>
+
+        <!-- Example DataTable for Dashboard Demo-->
+        <div class="card mb-4">
+            <div class="card-header"> Edit Blog Berita ST. Dwi Tunggal</div>
+            <div class="card-body">
+                <form action="" method="POST" enctype='multipart/form-data'>
+                     {% csrf_token %} 
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputJudulBerita">Judul Berita</label>
+                        <input class="form-control py-4" type="text" name="judul_berita" value="{{dataB.judul_berita}}"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputDeskripsiBerita">Deskripsi Berita</label>
+                        <input class="form-control py-4" type="text" name="deskripsi_berita" value="{{dataB.deskripsi_berita}}"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputDateBerita">Tanggal berita</label>
+                        <input class="form-control" type="datetime-local" name="date_berita"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputFileBerita">Image Berita</label>
+                        <input class="form-control" type="file" name="image_berita"/>
+                    </div>
+                    <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                        <button id="button" class="btn btn-primary" type="submit" value="Simpan">Simpan</button>
+                    </div>
+                    <script>
+                        $(document).ready(function () {
+                            $('button').prop('disabled', true);
+                            $('.form-control').on('change', function () {
+                                var judulBerita = $("#inputJudulBerita").val();
+                                var deskripsiBerita = $("#inputDeskripsiBerita").val();
+                                var dateBerita = $("#inputDateBerita").val();
+                                var fileBerita = $("#inputFileBerita").val();
+                                if (judulBerita != '' && deskripsiBerita != '' && dateBerita!= '' && fileBerita!= '' ) {
+                                    $('button').prop('disabled', false);
+                                } else {
+                                    $('button').prop('disabled', true);
+                                }
+                            });
+                        });
+                    </script>
+                </form>
+            </div>
+        </div>
+
+        <div class="card mb-4">
+            <div class="card-header">Data Komentar Berita ST. Dwi Tunggal</div>
+        <div class="card-body">
+            <div class="datatable">
+                <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Tanggal Komentar</th>
+                            <th>Nama Pengirim Komentar</th>
+                            <th>Email Pengirim Komentar</th>
+                            <th>Komentar</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                            {% for data in dataC%}
+                            <tr>
+                            <td>{{data.created_at}}</td>
+                            <td>{{data.name_sender}}</td>
+                            <td>{{data.email_address_sender}}</td>
+                            <td>{{data.berita_comment}}</td>
+                            <td>
+                                <a class="btn btn-datatable btn-icon btn-transparent-dark"  data-toggle="modal" data-target="#delete-{{data.id_comment}}"><i data-feather="trash-2"></i></a>
+                                <!-- Modal -->
+                                <div class="modal fade" id="delete-{{data.id_comment}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Hapus Data</h5>
+                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                            </div>
+                                            <div class="modal-body">Anda yakin menghapus data ini ?</div>
+                                            <div class="modal-footer">
+                                                <button class="btn btn-primary" type="button" data-dismiss="modal">Batal</button>
+                                                <a class="btn btn-danger" type="button" href="/hapusCommentCompany/{{data.id_comment}}" onclick="">Hapus</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        {% endfor %} 
+                    </tbody>
+                </table>
+            </div>                              
+        </div>
+        </div>
+    </div>
+</main>
+{% endblock konten %}

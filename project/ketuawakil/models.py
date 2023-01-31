@@ -24,3 +24,14 @@ class AwigModel(models.Model):
     class Meta:
         managed = False
         db_table = 'tb_awigawig'
+
+class EmailModelCompany(models.Model):
+    id_email_company = models.AutoField(primary_key=True)
+    name_sender_company = models.TextField(blank=True, null=True)
+    email_address_sender_company = models.TextField(blank=True, null=True)
+    subject_email_sender_company = models.TextField(blank=True, null=True)
+    message_email_sender_company = models.TextField(blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'tb_email_company'

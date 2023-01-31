@@ -1,0 +1,43 @@
+{% for i in dataB%}
+
+<article class="entry">
+
+  <div class="entry-img">
+    <img src="{{ i.image_berita.url }}" alt="" class="img-fluid">
+  </div>
+
+  <h2 class="entry-title">
+    <a href="blog-single.html">{{i.judul_berita}}</a>
+  </h2>
+
+  <div class="entry-meta">
+    <ul>
+      <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-single.html">ST. Dwi Tunggal</a></li>
+      <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">{{i.date_berita}}</time></a></li>
+      <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-single.html">{{i.count_comment}}</a></li>
+    </ul>
+  </div>
+
+  <div class="entry-content">
+    <p class="class-span">
+      {{i.deskripsi_berita}}
+    </p>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+       $(document).ready(function ()
+          { $(".class-span").each(function(i){
+                var len=$(this).text().trim().length;
+                if(len>100)
+                {
+                    $(this).text($(this).text().substr(0,200)+'...');
+                }
+            });
+        });
+    </script>
+    <div class="read-more">
+      <a onclick="location.href='/blogDetail/{{i.id_berita}}';">Read More</a>
+    </div>
+  </div>
+
+</article><!-- End blog entry -->
+{% endfor %}

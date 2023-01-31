@@ -1,0 +1,45 @@
+{% extends "basesuperuser.html" %}
+{% block konten %}
+{% load static %}
+<main>
+    <header class="page-header page-header-dark bg-gradient-primary-to-secondary pb-10">
+        <div class="container">
+            <div class="page-header-content pt-4">
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-auto mt-4">
+                        <h1 class="page-header-title">
+                            <div class="page-header-icon"><i data-feather="activity"></i></div>
+                            Dashboard Tentang ST. Dwi Tunggal
+                        </h1>
+                        <div class="page-header-subtitle">Example dashboard overview and content summary</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main page content-->
+    <div class="container mt-n10">   
+        <div class="card mb-4">
+            <div class="card-header"> Edit Data Tentang ST. Dwi Tunggal</div>
+             <div class="card-body">
+                 <form action="" method="POST" enctype='multipart/form-data'>
+                     {% csrf_token %} 
+                     <div class="form-group">
+                         <label class="small mb-1" for="inputUsername">Deskripsi ST. Dwi Tunggal</label>
+                         <textarea class="form-control" type="text" name="deskripsi_tentang_company" value="{{dataT.deskripsi_tentang_company}}" rows="5" >{{dataT.deskripsi_tentang_company}}</textarea>
+                     </div>
+                    <div class="form-group">
+                        <label class="small mb-1" for="inputImage">Image Tentang ST. Dwi Tunggal</label>
+                        <input class="form-control" type="file" name="image_tentang_company"/>
+                    </div>
+                     <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                         <input class="btn btn-primary" type="submit" value="Simpan">
+                     </div>
+                 </form>
+             </div>
+        </div>
+
+    </div>
+</main>
+{% endblock konten %}
